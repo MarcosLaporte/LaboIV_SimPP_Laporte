@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "LaboIV_SimPP_Laporte",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

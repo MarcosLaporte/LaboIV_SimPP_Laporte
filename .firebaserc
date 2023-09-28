@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "simulacro-pp-laboiv": {
+      "hosting": {
+        "LaboIV_SimPP_Laporte": [
+          "simulacro-pp-laboiv"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "simulacro-pp-laboiv"
+  }
+}
