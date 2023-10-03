@@ -1,9 +1,16 @@
 {
-  "hosting": [
-    {
-      "target": "LaboIV_SimPP_Laporte",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ]
+  "hosting": {
+    "public": "dist/labo-iv-sim-pp-laporte",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
