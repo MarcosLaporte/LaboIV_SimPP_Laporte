@@ -1,1 +1,22 @@
-<p>tabla-pelicula works!</p>
+<table>
+	<thead>
+		<!-- <th>ID</th> -->
+		<th>NOMBRE</th>
+		<th>TIPO</th>
+		<th>ESTRENO</th>
+		<th>AUDIENCIA</th>
+		<th>FOTO-SRC</th>
+	</thead>
+	<tbody *ngFor="let peli of peliculas">
+		<tr (click)="selecPelicula(peli)">
+			<!-- <td>{{peli.id}}</td> -->
+			<td>{{peli.nombre}}</td>
+			<td>{{peli.tipo}}</td>
+			<td>{{peli.estreno}}</td>
+			<td>{{peli.audiencia}}</td>
+			<td><img src={{peli.fotoSrc}}></td>
+		</tr>
+	</tbody>
+</table>
+
+<router-outlet></router-outlet>

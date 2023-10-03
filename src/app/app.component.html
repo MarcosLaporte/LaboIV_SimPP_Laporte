@@ -1,6 +1,20 @@
-<p routerLink="busqueda">busqueda</p>
-<p routerLink="peliculas/alta">peliculas/alta</p>
-<p routerLink="peliculas/listado">peliculas/listado</p>
-<p routerLink="actor/alta">actor/alta</p>
-<p routerLink="actor/listado">actor/listado</p>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<a class="navbar-brand" href="#">Simulacro</a>
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link" routerLink="busqueda">Búsqueda</a></li>
+			<!-- <li class="nav-item"><a class="nav-link" routerLink="películas">Películas</a></li> -->
+			<!-- <li class="nav-item"><a class="nav-link" routerLink="películas/alta">Películas/Alta</a></li> -->
+			<!-- <li class="nav-item"><a class="nav-link" routerLink="películas/listado">Películas/Listado</a></li> -->
+			<!-- <li class="nav-item"><a class="nav-link" routerLink="actor">Actor</a></li> -->
+			<li class="nav-item"><a class="nav-link" routerLink="actor/alta">Actor/Alta</a></li>
+			<!-- <li class="nav-item"><a class="nav-link" routerLink="actor/listado">Actor/Listado</a></li> -->
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>
+</nav>
+<div class="mb-4"></div>
 <router-outlet></router-outlet>

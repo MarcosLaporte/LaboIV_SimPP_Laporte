@@ -8,11 +8,15 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { TablaPeliculaComponent } from './components/peliculas/tabla-pelicula/tabla-pelicula.component';
+import { DetallePeliculaComponent } from './components/peliculas/detalle-pelicula/detalle-pelicula.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 		BusquedaComponent,
+		TablaPeliculaComponent,
+  	DetallePeliculaComponent
   ],
   imports: [
     BrowserModule,
