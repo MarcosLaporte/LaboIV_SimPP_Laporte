@@ -1,6 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { Pelicula } from './classes/pelicula';
 
 @Component({
 	selector: 'app-root',
@@ -10,5 +8,5 @@ import { Pelicula } from './classes/pelicula';
 })
 export class AppComponent {
 	title = 'LaboIV_SimPP_Laporte';
-	constructor(private firestore: Firestore) { }
+	constructor() { }
 }

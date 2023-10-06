@@ -3,9 +3,9 @@ import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc }
 import { Pelicula } from 'src/app/classes/pelicula';
 
 @Component({
-  selector: 'app-tabla-pelicula',
-  templateUrl: './tabla-pelicula.component.html',
-  styleUrls: ['./tabla-pelicula.component.css'],
+	selector: 'app-tabla-pelicula',
+	templateUrl: './tabla-pelicula.component.html',
+	styleUrls: ['./tabla-pelicula.component.css'],
 	encapsulation: ViewEncapsulation.None,
 })
 export class TablaPeliculaComponent {
@@ -13,7 +13,7 @@ export class TablaPeliculaComponent {
 	peliculas: Array<Pelicula> = [];
 	srcFoto: string = "../../../../favicon.ico";
 
-	constructor(private firestore: Firestore) {}
+	constructor(private firestore: Firestore) { }
 
 	ngOnInit() {
 		const col = collection(this.firestore, 'pelis');
@@ -24,10 +24,10 @@ export class TablaPeliculaComponent {
 			res.forEach(obj => {
 				const pelicula = obj as Pelicula;
 				arrAux.push(pelicula);
-				arrAux.sort((a, b) => a.id - b.id);
+				arrAux.sort((a, b) => a.estreno - b.estreno);
 			});
 		});
-		
+
 		this.peliculas = arrAux;
 	}
 
