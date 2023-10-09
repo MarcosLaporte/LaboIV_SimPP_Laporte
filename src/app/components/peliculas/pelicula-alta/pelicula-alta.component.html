@@ -51,8 +51,8 @@
 				</div>
 
 				<div class="mb-3">
-					<label class="custom-file-upload d-block w-100 font-weight-bolder font-underline" for="picture">Seleccione la imagen para la película!</label>
-					<input type="file" accept="image/*" id="picture" placeholder="Suba el póster de la película" (change)="imagen($event)">
+					<label class="custom-file-upload d-block w-100 font-weight-bolder font-underline" for="picture">{{inputFileText}}</label>
+					<input type="file" accept="image/*" id="picture" (change)="imagen($event)">
 				</div>
 				<hr class="mb-4">
 

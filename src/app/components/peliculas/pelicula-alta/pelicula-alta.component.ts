@@ -19,6 +19,7 @@ export class PeliculaAltaComponent {
 	cast: Array<Actor> = [];
 	fotoSrc: string = "";
 	imgFile: File | undefined;
+	inputFileText: string = "Seleccione el póster de la película";
 
 	constructor(private dbService: DatabaseService, private stService: StorageService) { }
 
@@ -77,6 +78,17 @@ export class PeliculaAltaComponent {
 	}
 
 	imagen($event: any) {
-		this.imgFile = $event.target.files[0];
+		const auxFile: File = $event.target.files[0];
+		if (!auxFile.type.startsWith('image')) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Debe elegir un archivo de tipo imagen'
+			});
+			return;
+		}
+
+		this.imgFile = auxFile;
+		this.inputFileText = this.imgFile !== undefined ? this.imgFile?.name : "Hubo un error con la imagen :( Seleccione otra.";
 	}
 }
