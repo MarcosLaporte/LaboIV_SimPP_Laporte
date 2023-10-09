@@ -1,1 +1,63 @@
-<p>pelicula-alta works!</p>
+<div class="container mb-4">
+	<div class="py-5 text-center">
+		<h2>Agregue una película!</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4 order-md-1 mb-4">
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted">Elija los actores</span>
+			</h4>
+			<div class="pre-scrollable">
+				<app-actor-listado (actorEvent)="actorSelec($event)"></app-actor-listado>
+			</div>
+		</div>
+
+		<div class="col-md-8 order-md-2 text-center">
+			<h4 class="mb-3">Datos de la película</h4>
+			<form>
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label for="title">Título</label>
+						<input type="text" class="form-control" id="title" placeholder="" [(ngModel)]="title" name="title">
+					</div>
+					<div class="col-md-6 mb-3">
+						<label for="genre">Género</label>
+						<select class="form-control" id="genre" [(ngModel)]="genre" name="genre">
+							<option value="" disabled selected>-- Seleccione el género --</option>
+							<option *ngFor="let genre of dicToObjArray(genres)" value="{{genre.key}}">{{genre.value}}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label for="year">Año de estreno</label>
+						<input type="number" min="1888" max="2099" class="form-control" id="year" [(ngModel)]="year" name="year">
+					</div>
+					<div class="col-md-6 mb-3">
+						<label for="audience">Audiencia</label>
+						<input type="number" min="0" step="10" class="form-control" id="audience" [(ngModel)]="audience" name="audience">
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label for="cast">Seleccione el elenco de la película</label>
+					<div class="d-block w-100 input-group-text pos-scrollable" id="cast">
+						<ul class="list-unstyled d-inline" *ngFor="let actor of cast">
+							<li class="form-control list-inline d-inline my-1" (click)="actorDeselec(actor)" role="button">{{actor.nombre}} {{actor.apellido}}</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label class="custom-file-upload d-block w-100 font-weight-bolder font-underline" for="picture">Seleccione la imagen para la película!</label>
+					<input type="file" accept="image/*" id="picture" placeholder="Suba el póster de la película" (change)="imagen($event)">
+				</div>
+				<hr class="mb-4">
+
+				<button class="btn btn-primary btn-lg btn-block" type="submit" (click)="guardarPeli()">Registrar</button>
+			</form>
+		</div>
+	</div>
+</div>

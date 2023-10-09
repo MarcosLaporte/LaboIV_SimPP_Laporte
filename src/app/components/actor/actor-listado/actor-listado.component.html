@@ -1,1 +1,5 @@
-<p>actor-listado works!</p>
+<ul class="list-group mb-3" *ngFor="let actor of actores">
+	<li class="list-group-item d-flex justify-content-between lh-condensed" (click)="selecActor(actor)" role="button">
+			<i>{{actor.nombre}} {{actor.apellido}}</i>
+	</li>
+</ul>

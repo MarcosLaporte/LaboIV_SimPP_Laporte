@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
 import { Actor } from '../classes/actor';
 import { Pelicula } from '../classes/pelicula';
 
@@ -15,7 +15,9 @@ export class DatabaseService {
 		const obs = collectionData(col);
 
 		obs.subscribe((res) => {
-			arrAux = res as Array<any>;
+			res.forEach((data) => {
+				arrAux.push(data);
+			});
 		});
 
 		return arrAux;
@@ -41,26 +43,26 @@ export class DatabaseService {
 		return true;
 	}
 	
-	agregarPelicula(pelicula: Pelicula): boolean {
+	agregarPelicula(titulo: string, genero: string, estreno: number, audiencia: number, elenco: Array<Actor>, fotoSrc: string) {
 		const col = collection(this.firestore, 'pelis');
 		const nuevoDoc = doc(col);
 
 		try {
 			setDoc(nuevoDoc, {
 				id: nuevoDoc.id,
-				nombre: pelicula.nombre,
-				tipo: pelicula.tipo,
-				estreno: pelicula.estreno,
-				audiencia: pelicula.audiencia,
-				elenco: pelicula.elenco,
-				fotoSrc: pelicula.fotoSrc,
+				titulo: titulo,
+				genero: genero,
+				estreno: estreno,
+				audiencia: audiencia,
+				elenco: elenco,
+				fotoSrc: fotoSrc,
 			});
 		} catch (error) {
 			console.log(error);
-			return false;
+			return null;
 		}
 
-		return true;
+		return nuevoDoc.id;
 	}
 
 	

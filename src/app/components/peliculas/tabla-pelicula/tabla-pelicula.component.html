@@ -1,8 +1,8 @@
 <table>
 	<thead>
 		<!-- <th>ID</th> -->
-		<th>NOMBRE</th>
-		<th>TIPO</th>
+		<th>TÍTULO</th>
+		<th>GÉNERO</th>
 		<th>ESTRENO</th>
 		<th>AUDIENCIA</th>
 		<th>FOTO-SRC</th>
@@ -10,8 +10,8 @@
 	<tbody *ngFor="let peli of peliculas">
 		<tr (click)="selecPelicula(peli)">
 			<!-- <td>{{peli.id}}</td> -->
-			<td>{{peli.nombre}}</td>
-			<td>{{peli.tipo}}</td>
+			<td>{{peli.titulo}}</td>
+			<td>{{peli.genero}}</td>
 			<td>{{peli.estreno}}</td>
 			<td>{{peli.audiencia}}</td>
 			<td><img src={{peli.fotoSrc}}></td>

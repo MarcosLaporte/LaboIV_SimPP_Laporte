@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ActorRoutingModule } from './actor-routing.module';
 import { ActorComponent } from './actor.component';
 import { ActorAltaComponent } from '../../components/actor/actor-alta/actor-alta.component';
-import { ActorListadoComponent } from '../../components/actor/actor-listado/actor-listado.component';
 import { TablaPaisesComponent } from 'src/app/components/tabla-paises/tabla-paises.component';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 	declarations: [
 		ActorComponent,
 		ActorAltaComponent,
-		ActorListadoComponent,
 		TablaPaisesComponent
 	],
 	imports: [

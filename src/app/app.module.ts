@@ -11,6 +11,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { TablaPeliculaComponent } from './components/peliculas/tabla-pelicula/tabla-pelicula.component';
 import { DetallePeliculaComponent } from './components/peliculas/detalle-pelicula/detalle-pelicula.component';
 import { HttpClientModule } from '@angular/common/http';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 		provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideDatabase(() => getDatabase()),
 		provideFirestore(() => getFirestore()),
-		HttpClientModule
+		HttpClientModule,
+		provideStorage(() => getStorage())
 	],
 	providers: [],
 	bootstrap: [AppComponent]

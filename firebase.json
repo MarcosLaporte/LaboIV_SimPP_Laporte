@@ -1,16 +1,23 @@
 {
-  "hosting": {
-    "public": "dist/labo-iv-sim-pp-laporte",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+  "hosting": [
+    {
+      "public": "dist/labo-iv-sim-pp-laporte",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "LaboIV_SimPP_Laporte",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
 }

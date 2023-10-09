@@ -562,6 +562,12 @@ pre code {
 	overflow-y: scroll
 }
 
+.pos-scrollable {
+	max-width: 730px;
+	overflow-y: hidden;
+	overflow-x: scroll
+}
+
 .container,
 .container-fluid,
 .container-lg,
@@ -11216,6 +11222,10 @@ button.bg-dark:hover {
 
 .font-italic {
 	font-style: italic !important
+}
+
+.font-underline {
+	text-decoration: underline !important
 }
 
 .text-white {
