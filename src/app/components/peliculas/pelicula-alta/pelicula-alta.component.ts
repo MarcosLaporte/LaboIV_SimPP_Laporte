@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Timestamp } from '@angular/fire/firestore';
 import { Actor } from 'src/app/classes/actor';
-import { Pelicula, generos } from 'src/app/classes/pelicula';
+import { generos } from 'src/app/classes/pelicula';
 import { DatabaseService } from 'src/app/services/database.service';
 import { StorageService } from 'src/app/services/storage.service';
 import Swal from 'sweetalert2';
@@ -14,10 +15,10 @@ export class PeliculaAltaComponent {
 	readonly genres = generos;
 	title: string = "";
 	genre: string = "";
-	year: number = 2023;
+	releaseDate: Date = new Date();
 	audience: number = 0;
-	cast: Array<Actor> = [];
-	fotoSrc: string = "";
+	actor: Actor | undefined;
+	fotoUrl: string = "";
 	imgFile: File | undefined;
 	inputFileText: string = "Seleccione el póster de la película";
 
@@ -28,8 +29,8 @@ export class PeliculaAltaComponent {
 	}
 
 	guardarPeli() {
-		if (this.title == "" || this.genre == "" || this.year == null ||
-			this.audience == null || !(this.imgFile instanceof File)) {
+		if (this.title == "" || this.genre == "" || this.releaseDate == null ||
+			this.audience == null || !(this.imgFile instanceof File) || this.actor == undefined) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Oops...',
@@ -38,7 +39,7 @@ export class PeliculaAltaComponent {
 			return;
 		}
 
-		const idPeli = this.dbService.agregarPelicula(this.title, generos[this.genre], this.year, this.audience, this.cast, this.fotoSrc);
+		const idPeli = this.dbService.agregarPelicula(this.title, generos[this.genre], new Date(this.releaseDate), this.audience, this.actor, this.fotoUrl);
 		if ( idPeli !== null && this.stService.subirImagen(this.imgFile, `peliculas/${idPeli}`)) {
 			Swal.fire({
 				icon: 'success',
@@ -58,23 +59,21 @@ export class PeliculaAltaComponent {
 	borrarValores() {
 		this.title = "";
 		this.genre = "";
-		this.year = 2023;
+		this.releaseDate = new Date();
 		this.audience = 0;
-		this.cast = [];
+		this.actor = undefined;
 		this.imgFile = undefined;
 	}
 
 	actorSelec(actor: any) {
 		const auxActor = actor as Actor;
-		if (auxActor !== null && !this.cast.includes(auxActor))
-			this.cast.push(actor);
+		if (auxActor !== null)
+			this.actor = auxActor;
 	}
 
 	actorDeselec(actor: Actor) {
-		if (actor !== null && this.cast.includes(actor)) {
-			const index = this.cast.indexOf(actor);
-			this.cast.splice(index, 1);
-		}
+		if (actor !== null)
+			this.actor = undefined;
 	}
 
 	imagen($event: any) {

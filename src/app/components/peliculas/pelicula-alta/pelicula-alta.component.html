@@ -33,7 +33,7 @@
 				<div class="row">
 					<div class="col-md-6 mb-3">
 						<label for="year">Año de estreno</label>
-						<input type="number" min="1888" max="2099" class="form-control" id="year" [(ngModel)]="year" name="year">
+						<input type="date" min="1900-01-01" class="form-control" id="releaseDate" [(ngModel)]="releaseDate" name="releaseDate">
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="audience">Audiencia</label>
@@ -42,9 +42,9 @@
 				</div>
 
 				<div class="mb-3">
-					<label for="cast">Seleccione el elenco de la película</label>
+					<label for="cast">Seleccione el actor/actriz principal de la película</label>
 					<div class="d-block w-100 input-group-text pos-scrollable" id="cast">
-						<ul class="list-unstyled d-inline" *ngFor="let actor of cast">
+						<ul class="list-unstyled d-inline" *ngIf="actor">
 							<li class="form-control list-inline d-inline my-1" (click)="actorDeselec(actor)" role="button">{{actor.nombre}} {{actor.apellido}}</li>
 						</ul>
 					</div>

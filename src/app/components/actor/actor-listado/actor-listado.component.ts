@@ -13,9 +13,9 @@ export class ActorListadoComponent {
 	
 	constructor(private dbService: DatabaseService) { }
 
-	ngOnInit() {
-		const arrAux = this.dbService.traerDatos('actores');
-		this.actores = arrAux as Array<Actor>;
+	async ngOnInit() {
+		const arrAux = await this.dbService.traerDatos<Actor>('actores');
+		this.actores = arrAux;
 	}
 
 	selecActor(actor: any) {

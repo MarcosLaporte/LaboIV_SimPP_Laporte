@@ -13,8 +13,8 @@ const routes: Routes = [
 	{ path: 'actor/alta', component: ActorAltaComponent },
 	{ path: 'actor/listado', component: ActorListadoComponent },
 	{ path: 'actor/actorPelicula', component: ActorListadoComponent },
-	{ path: 'pelicula/alta', component: PeliculaAltaComponent },
-	{ path: 'pelicula/listado', component: PeliculaListadoComponent },
+	{ path: 'peliculas/alta', component: PeliculaAltaComponent },
+	{ path: 'peliculas/listado', component: PeliculaListadoComponent },
 ];
 
 @NgModule({

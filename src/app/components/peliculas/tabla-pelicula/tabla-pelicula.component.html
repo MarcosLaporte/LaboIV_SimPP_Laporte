@@ -5,16 +5,13 @@
 		<th>GÉNERO</th>
 		<th>ESTRENO</th>
 		<th>AUDIENCIA</th>
-		<th>FOTO-SRC</th>
 	</thead>
 	<tbody *ngFor="let peli of peliculas">
 		<tr (click)="selecPelicula(peli)">
-			<!-- <td>{{peli.id}}</td> -->
 			<td>{{peli.titulo}}</td>
 			<td>{{peli.genero}}</td>
-			<td>{{peli.estreno}}</td>
+			<td>{{peli.estreno | date:'dd-MM-yyyy'}}</td>
 			<td>{{peli.audiencia}}</td>
-			<td><img src={{peli.fotoSrc}}></td>
 		</tr>
 	</tbody>
 </table>

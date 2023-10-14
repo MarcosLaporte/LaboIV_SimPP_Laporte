@@ -1,3 +1,4 @@
+import { Timestamp } from "@angular/fire/firestore";
 import { Actor } from "./actor";
 
 export const generos: { [key: string]: string } = {
@@ -20,18 +21,18 @@ export class Pelicula {
 	id: string;
 	titulo: string;
 	genero: string;
-	estreno: number;
+	estreno: Date;
 	audiencia: number;
-	elenco: Array<Actor>;
+	actor: Actor;
 	fotoSrc: string;
 
-	constructor(id: string, titulo: string, genero: string, estreno: number, audiencia: number, elenco: Array<Actor>, fotoSrc: string) {
+	constructor(id: string, titulo: string, genero: string, estreno: Date | Timestamp, audiencia: number, actor: Actor, fotoSrc: string) {
 		this.id = id;
 		this.titulo = titulo;
 		this.genero = genero;
-		this.estreno = estreno;
+		this.estreno = estreno instanceof Timestamp ? estreno.toDate() : estreno;
 		this.audiencia = audiencia;
-		this.elenco = elenco;
+		this.actor = actor;
 		this.fotoSrc = fotoSrc;
 	}
 

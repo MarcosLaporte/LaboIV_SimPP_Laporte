@@ -1,10 +1,11 @@
 <div *ngIf="pelicula">
-	<h3><i>{{ pelicula.titulo }}</i></h3>
-	<p class="mb-1"><b>Año de estreno</b>: {{ pelicula.estreno }}</p>
+	<h4><i>{{ pelicula.titulo }}</i></h4>
+	<p class="mb-1"><b>Año de estreno</b>: {{ pelicula.estreno | date:'dd-MM-yyyy' }}</p>
 	<p class="mb-1"><b>Género</b>: {{ pelicula.genero }}</p>
 	<p class="mb-1"><b>Audiencia</b>: {{ pelicula.audiencia }}</p>
-	<label for="elenco" class="mb-0"><b>Elenco de la pelicula</b>:</label>
+	<p class="mb-1"><b>Actor</b>: <i>{{ pelicula.actor.nombre }} {{pelicula.actor.apellido}}</i></p>
+	<!-- <label for="elenco" class="mb-0"><b>Elenco de la pelicula</b>:</label>
 	<ul class="mb-0" id="elenco" *ngFor="let actor of pelicula.elenco">
 		<li><i>{{actor.nombre}} {{actor.apellido}}</i></li>
-	</ul>
+	</ul> -->
 </div>

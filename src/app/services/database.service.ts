@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, getDoc, getDocs, setDoc } from '@angular/fire/firestore';
 import { Actor } from '../classes/actor';
 import { Pelicula } from '../classes/pelicula';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class DatabaseService {
-  constructor(private firestore: Firestore) {}
+	constructor(private firestore: Firestore) { }
 
-	traerDatos(dbPath: string): Array<any> {
+	async traerDatos<T>(dbPath: string): Promise<Array<T>> {
 		const col = collection(this.firestore, dbPath);
-		let arrAux: Array<any> = [];
-		const obs = collectionData(col);
 
-		obs.subscribe((res) => {
-			res.forEach((data) => {
-				arrAux.push(data);
-			});
+		const querySnapshot = await getDocs(col);
+		const arrAux: Array<T> = [];
+
+		querySnapshot.forEach((doc) => {
+			arrAux.push(doc.data() as T);
 		});
 
 		return arrAux;
@@ -42,10 +41,11 @@ export class DatabaseService {
 
 		return true;
 	}
-	
-	agregarPelicula(titulo: string, genero: string, estreno: number, audiencia: number, elenco: Array<Actor>, fotoSrc: string) {
+
+	agregarPelicula(titulo: string, genero: string, estreno: Date, audiencia: number, actor: Actor, fotoSrc: string) {
 		const col = collection(this.firestore, 'pelis');
 		const nuevoDoc = doc(col);
+		const actorDoc = doc(this.firestore, 'actores', actor.id);
 
 		try {
 			setDoc(nuevoDoc, {
@@ -54,7 +54,7 @@ export class DatabaseService {
 				genero: genero,
 				estreno: estreno,
 				audiencia: audiencia,
-				elenco: elenco,
+				actor: actorDoc,
 				fotoSrc: fotoSrc,
 			});
 		} catch (error) {
@@ -65,5 +65,8 @@ export class DatabaseService {
 		return nuevoDoc.id;
 	}
 
-	
+	async traerPorRef<T>(docRef: DocumentReference<DocumentData>) {
+		const docSnap = await getDoc(docRef);
+		return docSnap.data() as T;
+	}
 }
