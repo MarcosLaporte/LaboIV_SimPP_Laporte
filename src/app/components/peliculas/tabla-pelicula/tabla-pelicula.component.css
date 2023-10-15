@@ -1,3 +1,8 @@
 th, td{
 	border: 1px solid black;
 }
+
+.posters {
+	height: 345px;
+	width: auto;
+}
