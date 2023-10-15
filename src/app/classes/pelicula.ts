@@ -24,16 +24,16 @@ export class Pelicula {
 	estreno: Date;
 	audiencia: number;
 	actor: Actor;
-	fotoSrc: string;
+	fotoUrl: string;
 
-	constructor(id: string, titulo: string, genero: string, estreno: Date | Timestamp, audiencia: number, actor: Actor, fotoSrc: string) {
+	constructor(id: string, titulo: string, genero: string, estreno: Date | Timestamp, audiencia: number, actor: Actor, fotoUrl: string) {
 		this.id = id;
 		this.titulo = titulo;
 		this.genero = genero;
 		this.estreno = estreno instanceof Timestamp ? estreno.toDate() : estreno;
 		this.audiencia = audiencia;
 		this.actor = actor;
-		this.fotoSrc = fotoSrc;
+		this.fotoUrl = fotoUrl;
 	}
 
 

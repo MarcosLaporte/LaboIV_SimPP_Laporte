@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+import { Storage, getDownloadURL, ref, uploadBytes, listAll } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -9,12 +9,33 @@ export class StorageService {
 
 	constructor(private storage: Storage) { }
 
-	subirImagen(imagen: File, path: string) {
+	async subirImagen(imagen: File, path: string) {
 		const imgRef = ref(this.storage, `images/${path}`);
+		let url: string | undefined;
 
-		uploadBytes(imgRef, imagen)
-			.catch(() => { return false });
+		await uploadBytes(imgRef, imagen)
+		.then(async () => {
+			url = await getDownloadURL(imgRef);
+		})
+		.catch((err) => {
+			console.log(err);
+			return null;
+		});
 
-		return true;
+		return url;
+	}
+
+	traerImagenes(path: string) {
+		let urlArray: Array<string> = [];
+		const imgRef = ref(this.storage, `images/${path}`);
+		listAll(imgRef)
+			.then(async (res) => {
+				for (let item of res.items) {
+					const url = await getDownloadURL(item);
+					urlArray.push(url);
+				}
+			});
+
+		return urlArray;
 	}
 }

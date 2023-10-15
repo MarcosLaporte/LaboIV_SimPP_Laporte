@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Timestamp } from '@angular/fire/firestore';
 import { Actor } from 'src/app/classes/actor';
 import { generos } from 'src/app/classes/pelicula';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -28,31 +27,34 @@ export class PeliculaAltaComponent {
 		return Object.entries(dictionary).map(([key, value]) => ({ key, value }));
 	}
 
-	guardarPeli() {
+	async guardarPeli() {
 		if (this.title == "" || this.genre == "" || this.releaseDate == null ||
 			this.audience == null || !(this.imgFile instanceof File) || this.actor == undefined) {
-			Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'Revise los datos ingresados.',
-			});
+			Swal.fire('Oops...', 'Revise los datos ingresados.', 'error');
 			return;
 		}
 
-		const idPeli = this.dbService.agregarPelicula(this.title, generos[this.genre], new Date(this.releaseDate), this.audience, this.actor, this.fotoUrl);
-		if ( idPeli !== null && this.stService.subirImagen(this.imgFile, `peliculas/${idPeli}`)) {
+		const docRef = this.dbService.agregarPelicula(this.title, generos[this.genre], new Date(this.releaseDate), this.audience, this.actor);
+		if (docRef !== null) {
 			Swal.fire({
-				icon: 'success',
-				title: 'Hecho!',
-				text: 'La película fue agregada con éxito!',
+				imageUrl: '../../../../assets/loader.gif',
+				imageWidth: 300,
+				imageHeight: 300,
+				imageAlt: 'loader',
+				showConfirmButton: false,
+				allowOutsideClick: false
 			});
-			this.borrarValores();
+			const imgUrl = await this.stService.subirImagen(this.imgFile, `peliculas/${docRef?.id}`);
+			Swal.close();
+			if (imgUrl !== undefined) {
+				this.dbService.agregarFotoUrl(docRef, imgUrl);
+				Swal.fire('Hecho!', 'La película fue agregada con éxito!', 'success');
+				this.borrarValores();
+			} else {
+				Swal.fire('Oops...', 'Hubo un problema con la imagen.', 'error');
+			}
 		} else {
-			Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'Hubo un problema al agregar la película.',
-			});
+			Swal.fire('Oops...', 'Hubo un problema al agregar la película.', 'error');
 		}
 	}
 
@@ -63,6 +65,8 @@ export class PeliculaAltaComponent {
 		this.audience = 0;
 		this.actor = undefined;
 		this.imgFile = undefined;
+		this.inputFileText = "Seleccione el póster de la película";
+
 	}
 
 	actorSelec(actor: any) {

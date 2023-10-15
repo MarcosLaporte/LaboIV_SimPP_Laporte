@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, getDoc, getDocs, setDoc } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, getDoc, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Actor } from '../classes/actor';
 import { Pelicula } from '../classes/pelicula';
 
@@ -42,7 +42,7 @@ export class DatabaseService {
 		return true;
 	}
 
-	agregarPelicula(titulo: string, genero: string, estreno: Date, audiencia: number, actor: Actor, fotoSrc: string) {
+	agregarPelicula(titulo: string, genero: string, estreno: Date, audiencia: number, actor: Actor) {
 		const col = collection(this.firestore, 'pelis');
 		const nuevoDoc = doc(col);
 		const actorDoc = doc(this.firestore, 'actores', actor.id);
@@ -55,17 +55,29 @@ export class DatabaseService {
 				estreno: estreno,
 				audiencia: audiencia,
 				actor: actorDoc,
-				fotoSrc: fotoSrc,
 			});
 		} catch (error) {
 			console.log(error);
 			return null;
 		}
 
-		return nuevoDoc.id;
+		return nuevoDoc;
 	}
 
-	async traerPorRef<T>(docRef: DocumentReference<DocumentData>) {
+	agregarFotoUrl(docRef: DocumentReference, imgUrl: string) {
+		try {
+			updateDoc(docRef, {
+				fotoUrl: imgUrl
+			});
+		} catch (error) {
+			console.log(error);
+			return false;
+		}
+
+		return true;
+	}
+
+	async traerObjPorRef<T>(docRef: DocumentReference<DocumentData>) {
 		const docSnap = await getDoc(docRef);
 		return docSnap.data() as T;
 	}
