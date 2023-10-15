@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Actor } from 'src/app/classes/actor';
 import { DatabaseService } from 'src/app/services/database.service';
 
@@ -7,7 +7,9 @@ import { DatabaseService } from 'src/app/services/database.service';
 	templateUrl: './actor-listado.component.html',
 	styleUrls: ['./actor-listado.component.css']
 })
-export class ActorListadoComponent {
+export class ActorListadoComponent { 
+	@Input() liClass: string = "";
+	@Input() ulClass: string = "";
 	@Output() actorEvent = new EventEmitter<any>();
 	actores: Array<Actor> = [];
 	
@@ -15,6 +17,7 @@ export class ActorListadoComponent {
 
 	async ngOnInit() {
 		const arrAux = await this.dbService.traerDatos<Actor>('actores');
+		arrAux.sort((a, b) => `${a.nombre} ${a.apellido}` > `${b.nombre} ${b.apellido}` ? 1 : -1);
 		this.actores = arrAux;
 	}
 

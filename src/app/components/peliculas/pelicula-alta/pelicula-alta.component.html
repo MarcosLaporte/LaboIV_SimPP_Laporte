@@ -8,9 +8,7 @@
 			<h4 class="d-flex justify-content-between align-items-center mb-3">
 				<span class="text-muted">Actores</span>
 			</h4>
-			<div class="pre-scrollable">
-				<app-actor-listado (actorEvent)="actorSelec($event)"></app-actor-listado>
-			</div>
+				<app-actor-listado [ulClass]="'list-group mw-100 pre-scrollable'" [liClass]="''" (actorEvent)="actorSelec($event)"></app-actor-listado>
 		</div>
 
 		<div class="col-md-8 order-md-2 text-center">

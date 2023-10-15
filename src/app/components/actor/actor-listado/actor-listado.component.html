@@ -1,5 +1,5 @@
-<ul class="list-group mb-3" *ngFor="let actor of actores">
-	<li class="list-group-item d-flex justify-content-between lh-condensed" (click)="selecActor(actor)" role="button">
+<ul [class]="ulClass">
+	<li [class]="'list-group-item my-1 w-auto ' + liClass" (click)="selecActor(actor)" *ngFor="let actor of actores" role="button">
 			<i>{{actor.nombre}} {{actor.apellido}}</i>
 	</li>
 </ul>

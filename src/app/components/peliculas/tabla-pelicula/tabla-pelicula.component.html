@@ -1,6 +1,6 @@
-<div class="d-inline-block mw-100 pre-scrollable py-1">
-	<ul class="mw-100 mb-0 list-unstyled d-inline" *ngFor="let peli of peliculas">
-		<li class="list-inline d-inline my-1 mx-3" (click)="selecPelicula(peli)"><img [src]="peli.fotoUrl" class="posters" role="button"></li>
+<div class="d-inline-block mw-100 pos-scrollable py-1">
+	<ul class="mw-100 mb-0 list-unstyled d-flex flex-nowrap">
+		<li class="list-inline my-1 mx-3" (click)="selecPelicula(peli)" *ngFor="let peli of peliculas"><img [src]="peli.fotoUrl" class="posters" role="button"></li>
 	</ul>
 </div>
 <router-outlet></router-outlet>
