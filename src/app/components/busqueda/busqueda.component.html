@@ -5,9 +5,12 @@
 	</div>
 
 	<div class="container">
-		<h2>Detalles</h2>
-		<app-detalle-pelicula [pelicula]="peliculaSelec"></app-detalle-pelicula>
-		<hr>
+		<h2 *ngIf="!peliculaSelec">Seleccione una película!</h2>
+		<div class="datosPelicula" *ngIf="peliculaSelec">
+			<h2>Detalles</h2>
+			<app-detalle-pelicula [pelicula]="peliculaSelec"></app-detalle-pelicula>
+			<hr>
+		</div>
 	</div>
 
 </main>
