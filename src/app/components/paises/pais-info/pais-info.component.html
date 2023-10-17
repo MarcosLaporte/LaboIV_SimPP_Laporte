@@ -1,0 +1,11 @@
+<div *ngIf="paisSelec">
+	<ul>
+		<li class="my-1 list-customstyled"><h4>{{infoPais['spaName']}}</h4></li>
+		<li class="my-1 list-customstyled">Código: {{infoPais['cca3']}}</li>
+		<li class="my-1 list-customstyled">Capital: {{infoPais['capital']}}</li>
+		<li class="my-1 list-customstyled">Subregión: {{infoPais['subregion']}}</li>
+	</ul>
+	<div class="bandera d-flex justify-content-center">
+		<img [src]="infoPais['flag']" height="50">
+	</div>
+</div>

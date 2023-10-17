@@ -13,18 +13,20 @@ export class ActorAltaComponent {
 	firstName: string = "";
 	lastName: string = "";
 	email: string = "";
-	country: string = "";
-	
-	constructor(private dbService: DatabaseService) {}
+	country: any;
+	countryDisplay: string = "";
+
+	constructor(private dbService: DatabaseService) { }
 
 	paisSelec(pais: any) {
-		if (pais.translations.spa.common !== null)
-			this.country = pais.translations.spa.common;
+		if (pais !== null && pais.translations.spa.common !== null)
+			this.country = pais;
+		this.countryDisplay = pais.translations.spa.common + ', ' + pais.cca3;
 	}
 
 	guardarActor() {
 		if (this.firstName == "" || this.lastName == "" ||
-			(this.email !== "" && !isEmail(this.email)) || this.country == "") {
+			(this.email !== "" && !isEmail(this.email)) || this.country == undefined) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Oops...',
@@ -33,7 +35,7 @@ export class ActorAltaComponent {
 			return;
 		}
 
-		let actor = new Actor("", this.firstName, this.lastName, this.email, this.country);
+		let actor = new Actor("", this.firstName, this.lastName, this.email, this.country.cca3);
 		if (this.dbService.agregarActor(actor)) {
 			Swal.fire({
 				icon: 'success',
@@ -50,10 +52,11 @@ export class ActorAltaComponent {
 		}
 	}
 
-	borrarValores(){
+	borrarValores() {
 		this.firstName = "";
 		this.lastName = "";
 		this.email = "";
-		this.country = "";
+		this.country = undefined;
+		this.countryDisplay = "";
 	}
 }

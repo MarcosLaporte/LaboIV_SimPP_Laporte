@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import { ActorAltaComponent } from './components/actor/actor-alta/actor-alta.component';
-import { TablaPaisesComponent } from 'src/app/components/tabla-paises/tabla-paises.component';
+import { TablaPaisesComponent } from 'src/app/components/paises/tabla-paises/tabla-paises.component';
 import { ActorPeliculaComponent } from 'src/app/components/actor/actor-pelicula/actor-pelicula.component';
 import { ActorListadoComponent } from 'src/app/components/actor/actor-listado/actor-listado.component';
 import { TablaPeliculaComponent } from 'src/app/components/peliculas/tabla-pelicula/tabla-pelicula.component';
@@ -20,6 +20,9 @@ import { DetallePeliculaComponent } from 'src/app/components/peliculas/detalle-p
 import { PeliculaAltaComponent } from './components/peliculas/pelicula-alta/pelicula-alta.component';
 import { PeliculaListadoComponent } from './components/peliculas/pelicula-listado/pelicula-listado.component';
 import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from './components/error/error.component';
+import { PaisInfoComponent } from './components/paises/pais-info/pais-info.component';
+import { ActorDatosComponent } from './components/actor/actor-datos/actor-datos.component';
 
 
 @NgModule({
@@ -28,12 +31,15 @@ import { FormsModule } from '@angular/forms';
 		BusquedaComponent,
 		TablaPaisesComponent,
 		ActorAltaComponent,
-  	ActorPeliculaComponent,
+		ActorPeliculaComponent,
 		ActorListadoComponent,
 		PeliculaAltaComponent,
 		PeliculaListadoComponent,
 		TablaPeliculaComponent,
 		DetallePeliculaComponent,
+		ErrorComponent,
+		PaisInfoComponent,
+  ActorDatosComponent,
 	],
 	imports: [
 		BrowserModule,

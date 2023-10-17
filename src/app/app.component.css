@@ -455,6 +455,11 @@ mark {
 	background-color: #fcf8e3
 }
 
+.list-customstyled {
+	padding-left: 0;
+	list-style: '※ '
+}
+
 .list-unstyled {
 	padding-left: 0;
 	list-style: none
@@ -559,7 +564,8 @@ pre code {
 
 .pre-scrollable {
 	max-height: 340px;
-	overflow-y: scroll
+	overflow-y: scroll;
+	overflow-x: hidden
 }
 
 .pos-scrollable {
@@ -6079,21 +6085,21 @@ a.badge-dark:focus {
 	border-color: #007bff
 }
 
-.list-group-item+.list-group-item {
+/* .list-group-item+.list-group-item {
 	border-top-width: 0
 }
 
 .list-group-item+.list-group-item.active {
 	margin-top: -1px;
 	border-top-width: 1px
-}
+} */
 
 .list-group-horizontal {
 	-ms-flex-direction: row;
 	flex-direction: row
 }
 
-.list-group-horizontal>.list-group-item:first-child {
+/* .list-group-horizontal>.list-group-item:first-child {
 	border-bottom-left-radius: .25rem;
 	border-top-right-radius: 0
 }
@@ -6115,7 +6121,7 @@ a.badge-dark:focus {
 .list-group-horizontal>.list-group-item+.list-group-item.active {
 	margin-left: -1px;
 	border-left-width: 1px
-}
+} */
 
 @media (min-width:576px) {
 	.list-group-horizontal-sm {
@@ -8864,6 +8870,10 @@ button.bg-dark:hover {
 
 .w-75 {
 	width: 75% !important
+}
+
+.w-99 {
+	width: 99% !important
 }
 
 .w-100 {

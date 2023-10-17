@@ -5,11 +5,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PaisesService {
-	ruta: string = 'https://restcountries.com/v3.1/all';
+	rutaInicial: string = 'https://restcountries.com/v3.1/';
   constructor(private http: HttpClient) { }
 
 	traerPaises() {
-		return this.http.get(this.ruta);
+		return this.http.get(this.rutaInicial + 'all');
 	}
 	
+	traerPais(codigo: string) {
+		return this.http.get(this.rutaInicial + 'alpha/' + codigo);
+	}
 }

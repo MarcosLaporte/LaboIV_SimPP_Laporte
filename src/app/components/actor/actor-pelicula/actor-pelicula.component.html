@@ -1,0 +1,34 @@
+<main role="main">
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<app-actor-listado [ulClass]="'pos-scrollable d-flex flex-wrap list-group-horizontal mw-100 w-100'"
+			[liClass]="'mx-1'" (actorEvent)="infoActor($event)"></app-actor-listado>
+	</div>
+
+	<div class="container">
+		<!-- Example row of columns -->
+		<h1 *ngIf="!actorSelec" class="d-flex justify-content-center font-underline">Seleccione un actor</h1>
+		<div *ngIf="actorSelec" class="datosActor">
+			<h1 class="d-flex justify-content-center font-underline"><i>{{actorSelec.nombre}} {{actorSelec.apellido}}</i></h1>
+			<hr>
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Peliculas</h2>
+					<app-pelicula-listado [actorSelec]="actorSelec"></app-pelicula-listado>
+				</div>
+				<div class="col-md-4">
+					<h2>Pais natal</h2>
+					<app-pais-info [paisSelec]="paisActor"></app-pais-info>
+				</div>
+				<div class="col-md-4">
+					<h2>Datos</h2>
+					<app-actor-datos [actor]="actorSelec"></app-actor-datos>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</main>
+
+<router-outlet></router-outlet>
